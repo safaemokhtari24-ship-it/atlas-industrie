@@ -8,3 +8,6 @@ IPv6 ULA prefix of the project: fd64:6e93:e078::/48
 It detects duplicate VLAN identifiers and IPv4/IPv6 overlaps.
 It does NOT validate mandatory fields, nor the consistency between
 VLAN, zone and subnet.
+## Automatic check
+- CI: `.github/workflows/controle.yml` runs the check on every push.
+- Local hook (versioned): after cloning, run once `git config core.hooksPath hooks`
