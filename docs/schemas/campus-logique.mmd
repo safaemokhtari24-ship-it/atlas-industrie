@@ -1,0 +1,34 @@
+%% Logical view, copied from chapter 1, diagram 2 (retained architecture).
+%% Only the device names were changed: they are those of inventory/hosts.yml.
+%% Thin line = link, thick line = inter-building link, dotted line = second uplink.
+graph TB
+    NET((Internet et FAI))
+
+    subgraph BATA ["Bâtiment A siège et IT"]
+        ACCA["ACC-A-01, ACC-A-02, ACC-A-03<br/>ACC-A-04, ACC-A-05, ACC-A-06<br/>Accès bureautique voix Wi-Fi A"]
+        SRV["Serveurs IT"]
+        FWA[FW-A]
+        CCA[CC-A]
+    end
+
+    subgraph BATB ["Bâtiment B production"]
+        SUP["Supervision de production"]
+        ACCOT["ACC-B-01, ACC-B-02<br/>Accès industriel OT"]
+        ACCB["ACC-B-03, ACC-B-04<br/>Accès bureautique B"]
+        FWB[FW-B]
+        CCB[CC-B]
+    end
+
+    NET --- FWA
+    FWA --- CCA
+    SRV --- CCA
+    ACCA --- CCA
+    FWA === FWB
+    CCA === CCB
+    FWB --- CCB
+    SUP --- ACCOT
+    ACCOT --- CCB
+    ACCB --- CCB
+    ACCA -.- CCB
+    CCA -.- ACCOT
+    CCA -.- ACCB

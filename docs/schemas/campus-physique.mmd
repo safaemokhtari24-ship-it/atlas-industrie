@@ -1,0 +1,21 @@
+graph LR
+    subgraph LOCA [Technical room A, building A]
+        CCA[CC-A]
+        UPSA[UPS A]
+    end
+    subgraph ROUTES [Two fibre routes, assumed distinct]
+        NORD[North technical gallery]
+        SUD[South outer facade]
+    end
+    CHAMBRE{{Cable chamber under the courtyard - common point}}
+    subgraph LOCB [Technical room B, building B]
+        CCB[CC-B]
+        UPSB[UPS B]
+    end
+    UPSA --- CCA
+    UPSB --- CCB
+    CCA ---|fibre 1| NORD
+    CCA ---|fibre 2| SUD
+    NORD --- CHAMBRE
+    SUD --- CHAMBRE
+    CHAMBRE --- CCB
