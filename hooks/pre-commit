@@ -1,0 +1,7 @@
+#!/bin/sh
+PY=python
+command -v python >/dev/null 2>&1 || PY=python3
+$PY scripts/check_vlans.py || {
+    echo "IP plan check failed: commit refused."
+    exit 1
+}
